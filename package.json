@@ -1,10 +1,23 @@
 {
   "name": "octo-sansa",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "homepage": "https://github.com/thepatrick/octo-sansa",
+  "author": {
+    "name": "Patrick Quinn-Graham",
+    "email": "hello@thepatrick.io"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/thepatrick/octo-sansa.git"
+  },
+  "license": "MIT",
+  "main": "./index.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
   "dependencies": {
     "coffee-script": "~1.6.3"
   },
-  "main": "./index.js",
   "jshintConfig": {
     "node": true,
     "strict": false,
