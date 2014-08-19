@@ -1,0 +1,24 @@
+{
+  "name": "octo-sansa",
+  "version": "0.1.0",
+  "dependencies": {
+    "coffee-script": "~1.6.3"
+  },
+  "main": "./index.js",
+  "jshintConfig": {
+    "node": true,
+    "strict": false,
+    "camelcase": true,
+    "eqeqeq": true,
+    "eqnull": true,
+    "indent": 2,
+    "latedef": true,
+    "maxlen": 100,
+    "newcap": true,
+    "quotmark": "single",
+    "smarttabs": true,
+    "trailing": true,
+    "undef": true,
+    "unused": true
+  }
+}
