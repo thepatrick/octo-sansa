@@ -31,6 +31,9 @@ class Server extends events.EventEmitter
       for own id, fn of callbacks
           fn Error err
 
+    client.ask = @ask.bind @, client
+    client.tell = @tell.bind @, client
+
     client.on 'error', (err)=>
       nukeCallbacks 'Client error'
       @emit 'client error', client, err
@@ -46,8 +49,11 @@ class Server extends events.EventEmitter
 
     parser.on 'message', (message)=>
       if message.kind == 'tell'
+        client.emit message.function, message.body
         @emit message.function, client, message.body
       else if message.kind == 'ask'
+        client.emit message.function, message.body, (err, response)=>
+          @respondToMessage client, message, err, response
         @emit message.function, client, message.body, (err, response)=>
           @respondToMessage client, message, err, response
       else if message.kind == 'reply'
