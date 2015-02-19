@@ -15,22 +15,5 @@
   "engines": {
     "node": ">= 0.12.0"
   },
-  "dependencies": {
-  },
-  "jshintConfig": {
-    "node": true,
-    "strict": false,
-    "camelcase": true,
-    "eqeqeq": true,
-    "eqnull": true,
-    "indent": 2,
-    "latedef": true,
-    "maxlen": 100,
-    "newcap": true,
-    "quotmark": "single",
-    "smarttabs": true,
-    "trailing": true,
-    "undef": true,
-    "unused": true
-  }
+  "dependencies": {}
 }
