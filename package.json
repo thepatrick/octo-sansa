@@ -20,7 +20,9 @@
     "chai": "^3.2.0",
     "eslint": "^1.4.3",
     "eslint-config-opentok": "^1.0.2",
-    "mocha": "^2.3.2"
+    "mocha": "^2.3.2",
+    "mockery": "^1.4.0",
+    "sinon": "^1.16.1"
   },
   "scripts": {
     "test": "mocha test"
