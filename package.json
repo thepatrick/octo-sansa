@@ -13,7 +13,11 @@
   "license": "MIT",
   "main": "./index.js",
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">= 4.0.0"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^1.4.3",
+    "eslint-config-opentok": "^1.0.2",
+  }
 }
