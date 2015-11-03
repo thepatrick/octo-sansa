@@ -1,7 +1,6 @@
-octo-sansa
-==========
+# octo-sansa
 
-[![CI Status](http://img.shields.io/travis/thepatrick/octo-sansa.svg?style=flat)](https://travis-ci.org/thepatrick/octo-sansa-objc)
+[![CI Status](http://img.shields.io/travis/thepatrick/octo-sansa.svg?style=flat)](https://travis-ci.org/thepatrick/octo-sansa)
 [![Version](https://img.shields.io/npm/v/octo-sansa.svg?style=flat)](http://npmjs.org/package/octo-sansa)
 [![License](https://img.shields.io/github/license/thepatrick/octo-sansa.svg)](http://github.org/thepatrick/octo-sansa)
 
