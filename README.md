@@ -10,7 +10,7 @@ A very simple TCP (client/server) messaging layer
 Getting started
 ---------------
 
-A "echo" server:
+A simple "echo" server:
 
 ```javascript
 
@@ -49,4 +49,4 @@ client.on('connected', () => {
 TODO
 ----
 
-Documentation of the API. 
+Documentation of the API.
