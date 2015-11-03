@@ -75,7 +75,7 @@ describe('Client', () => {
 
       expect(error.called, 'error.called').to.equal(true);
     });
-    
+
   });
 
   describe('events', () => {
@@ -345,6 +345,47 @@ describe('Client', () => {
         testClient.ask('test ask without callback', 'body');
       }).to.throw('ask(test ask without callback) with no callback');
     });
+
+    it('throws an error if you try and ask a reserved event name', () => {
+      expect(() => {
+        testClient.ask('on', {}, () => {});
+      }).to.throw('ask(on) is a reserved event name');
+    });
+
+    it('throws an error if you try and tell a reserved event name', () => {
+      expect(() => {
+        testClient.tell('on', {});
+      }).to.throw('tell(on) is a reserved event name');
+    });
+
+    it('throws an error if you try and send a message after calling close', () => {
+      testClient.close();
+      expect(() => {
+        testClient.tell('test event', {});
+      }).to.throw('tell(test event) on client that has disconnected');
+    });
+
+    it('throws an error if you try and send a message after the close event fires', () => {
+      connectionStub.emit('close');
+      expect(() => {
+        testClient.tell('test event', {});
+      }).to.throw('tell(test event) on client that has disconnected');
+    });
+
+    it('throws an error if you try and ask after calling close', () => {
+      testClient.close();
+      expect(() => {
+        testClient.ask('test event', {}, () => {});
+      }).to.throw('ask(test event) on client that has disconnected');
+    });
+
+    it('throws an error if you try and ask if the the close event has fired', () => {
+      connectionStub.emit('close');
+      expect(() => {
+        testClient.ask('test event', {}, () => {});
+      }).to.throw('ask(test event) on client that has disconnected');
+    });
+
   });
 
 });
