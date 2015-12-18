@@ -25,6 +25,7 @@
     "sinon": "^1.16.1"
   },
   "scripts": {
+    "lint": "eslint .",
     "test": "mocha test"
   }
 }
