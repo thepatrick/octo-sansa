@@ -4,6 +4,7 @@ node_js:
 before_script: npm run lint
 deploy:
   provider: npm
+  email: wtf@travis-ci.org
   on:
     tags: true
   api_key:
