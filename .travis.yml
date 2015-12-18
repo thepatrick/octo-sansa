@@ -1,3 +1,10 @@
 language: node_js
 node_js:
-  - "4.2.1"
+- 4.2.3
+before_script: npm run lint
+deploy:
+  provider: npm
+  on:
+    tags: true
+  api_key:
+    secure: a9ObhOA6E6rfeyOPD/pXUV676xueq7RHYs5iO1Pfxs7dJ7hT7sYNJXrt3JzQfD6pdZ2Vz09RW6ncQzxCabbtTaH/8/3dBFbofjH9uradIbI7jHPPuzOuQxs+NeKE0GaL64RzgcPVXZB7yXbIdVkoGpq9t80Xm0VTEmbyx9edUXE=
