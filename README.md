@@ -15,7 +15,9 @@ A simple "echo" server:
 
 const octo = require('octo-sansa');
 
-const server = octo.createServer(client => {
+const server = octo.createServer();
+
+server.on('connected', client => {
   client.on('echo', (body, callback) => {
     console.log('Client said', body);
     callback(undefined, body);
@@ -36,7 +38,7 @@ const octo = require('octo-sansa');
 
 const client = octo.createClient(1234, 'localhost');
 
-client.on('connected', () => {
+client.on('connect', () => {
   client.ask('echo', 'Say hello server', (err, response) => {
     console.log('The server said', response);
     client.close();
