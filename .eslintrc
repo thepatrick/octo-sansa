@@ -1,3 +1,21 @@
 {
-  "extends": "thepatrick"
+  "extends": "airbnb-base",
+  "env": {
+    "browser": false,
+    "node": true,
+  },
+  "parserOptions": {
+    "sourceType": "script"
+  },
+  "rules": {
+    // We are node, we need this or const/let won't work
+    "strict": [2, "global"],
+    "no-new-require": 2,
+    "no-path-concat": 2, // disallow string concatenation with __dirname and __filename (off by default) (on by default in the node environment)
+    "no-lonely-if": 2, // disallow if as the only statement in an else block (off by default)
+    "operator-assignment": [2, "always"],
+    "curly": 2,
+    "no-warning-comments": [1, { "terms": ["todo", "fixme", "xxx"], "location": "start" }],
+    "new-parens": 2
+  }
 }

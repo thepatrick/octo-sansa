@@ -2,14 +2,19 @@
 
 const sinon = require('sinon');
 const mockery = require('mockery');
-const expect = require('chai').expect;
-const EventEmitter = require('events').EventEmitter;
+const { expect } = require('chai');
+const { EventEmitter } = require('events');
 
-/* eslint dot-notation: 0, no-unused-expressions: 0*/
+/* eslint dot-notation: 0, no-unused-expressions: 0 */
 /* global describe, beforeEach, afterEach, it */
 
 describe('Client', () => {
-  let netStub, sansaStub, createClient, parserStub, connectionStub, testClient;
+  let netStub;
+  let sansaStub;
+  let createClient;
+  let parserStub;
+  let connectionStub;
+  let testClient;
 
   beforeEach(() => {
     mockery.enable({
@@ -49,7 +54,6 @@ describe('Client', () => {
   });
 
   describe('connect', () => {
-
     it('connects to a server', () => {
       expect(netStub.createConnection.calledWithExactly(1234, 'some-host')).to.equal(true);
     });
@@ -75,11 +79,9 @@ describe('Client', () => {
 
       expect(error.called, 'error.called').to.equal(true);
     });
-
   });
 
   describe('events', () => {
-
     it('emits a connect event', () => {
       const connected = sinon.stub();
       testClient.on('connect', connected);
@@ -245,11 +247,9 @@ describe('Client', () => {
 
       expect(connectionStub.write.calledWithExactly('test-ask-built')).to.equal(true);
     });
-
   });
 
   describe('send messages', () => {
-
     it('sends tell messages', () => {
       sansaStub.build.returns('test-tell-built');
 
@@ -385,7 +385,5 @@ describe('Client', () => {
         testClient.ask('test event', {}, () => {});
       }).to.throw('ask(test event) on client that has disconnected');
     });
-
   });
-
 });

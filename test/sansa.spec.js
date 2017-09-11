@@ -1,17 +1,15 @@
 'use strict';
 
-/* eslint dot-notation: 0, no-unused-expressions: 0*/
+/* eslint dot-notation: 0, no-unused-expressions: 0 */
 
 /* global describe, beforeEach, it */
 
-const expect = require('chai').expect;
+const { expect } = require('chai');
 
 const sansa = require('../lib/sansa');
 
 describe('Sansa', () => {
-
   describe('build', () => {
-
     let testBuffer;
 
     beforeEach(() => {
@@ -38,7 +36,6 @@ describe('Sansa', () => {
   });
 
   describe('parser', () => {
-
     let parser;
 
     beforeEach(() => {
@@ -47,7 +44,7 @@ describe('Sansa', () => {
 
     it('emits messages', () => {
       let x;
-      parser.on('message', msg => {
+      parser.on('message', (msg) => {
         x = msg;
       });
       parser.write(sansa.build({ testing: 'one two three' }));
@@ -57,7 +54,7 @@ describe('Sansa', () => {
 
     it('emits multiple messages', () => {
       const x = [];
-      parser.on('message', msg => {
+      parser.on('message', (msg) => {
         x.push(msg);
       });
       parser.write(sansa.build({ testing: 'one two three' }));
@@ -82,14 +79,12 @@ describe('Sansa', () => {
 
     it('barfs if someone tries to send too big a message', () => {
       let err;
-      parser.on('error', _err =>  err = _err);
-      const tempBuffer = new Buffer(4);
+      parser.on('error', (_err) => { err = _err; });
+      const tempBuffer = Buffer.alloc(4);
       tempBuffer.writeUInt32BE(10485761);
       parser.write(tempBuffer);
       expect(err).to.not.be.undefined;
       expect(err.message).to.equal('Message length 10485761 bytes is greater than the 10MB limit');
     });
-
   });
-
 });

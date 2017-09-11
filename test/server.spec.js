@@ -5,11 +5,16 @@ const mockery = require('mockery');
 const expect = require('chai').expect;
 const EventEmitter = require('events').EventEmitter;
 
-/* eslint dot-notation: 0, no-unused-expressions: 0*/
+/* eslint dot-notation: 0, no-unused-expressions: 0 */
 /* global describe, beforeEach, afterEach, it */
 
 describe('Server', () => {
-  let netStub, sansaStub, createServer, parserStub, serverStub, testServer;
+  let netStub,
+    sansaStub,
+    createServer,
+    parserStub,
+    serverStub,
+    testServer;
 
   const fakeNewClient = () => {
     const connectionStub = new EventEmitter();
@@ -68,7 +73,9 @@ describe('Server', () => {
   });
 
   describe('incoming connections', () => {
-    let serverConnected, connected, testClient;
+    let serverConnected,
+      connected,
+      testClient;
 
     beforeEach(() => {
       serverConnected = netStub.createServer.args[0][0];
@@ -107,8 +114,10 @@ describe('Server', () => {
       const clientDisconnected = sinon.stub();
       testServer.on('disconnected', clientDisconnected);
       testClient.emit('close');
-      expect(clientDisconnected.calledWithExactly(testClient),
-        'clientDisconnected').to.equal(true);
+      expect(
+        clientDisconnected.calledWithExactly(testClient),
+        'clientDisconnected',
+      ).to.equal(true);
     });
 
     it('emits on tell messages', () => {
@@ -125,7 +134,6 @@ describe('Server', () => {
     });
 
     it('emits on ask messages', () => {
-
       const ask = sinon.stub();
 
       testServer.on('test ask', ask);
@@ -255,11 +263,12 @@ describe('Server', () => {
 
       expect(testClient.write.calledWithExactly('test-ask-built')).to.equal(true);
     });
-
   });
 
   describe('client objects', () => {
-    let serverConnected, connected, testClient;
+    let serverConnected,
+      connected,
+      testClient;
 
     beforeEach(() => {
       serverConnected = netStub.createServer.args[0][0];
@@ -270,14 +279,15 @@ describe('Server', () => {
     });
 
     describe('events', () => {
-
       it('emit a client error on parser errors', () => {
         const clientError = sinon.stub();
         const fakeError = new Error('fake error');
         testClient.on('client error', clientError);
         parserStub.emit('error', fakeError);
-        expect(clientError.calledWithExactly(fakeError),
-          'clientError.calledWithExactly').to.equal(true);
+        expect(
+          clientError.calledWithExactly(fakeError),
+          'clientError.calledWithExactly',
+        ).to.equal(true);
       });
 
       it('emits on tell messages', () => {
@@ -294,7 +304,6 @@ describe('Server', () => {
       });
 
       it('emits on ask messages', () => {
-
         const ask = sinon.stub();
 
         testClient.on('test ask', ask);
@@ -424,11 +433,9 @@ describe('Server', () => {
 
         expect(testClient.write.calledWithExactly('test-ask-built')).to.equal(true);
       });
-
     });
 
     describe('send messages', () => {
-
       it('sends tell messages', () => {
         sansaStub.build.returns('test-tell-built');
 
@@ -550,9 +557,6 @@ describe('Server', () => {
           testClient.ask('test event', {}, () => {});
         }).to.throw('ask(test event) on client that has disconnected');
       });
-
     });
-
   });
-
 });
